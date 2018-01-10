@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.vp.model.Education" table="EDUCATION">
+		<id name="id" type="int">
+			<generator class="native"/>  <!-- 自增长 -->
+		</id>
+		<property name="graduateInstitutions" type="java.lang.String"></property>
+		<property name="major" type="java.lang.String"></property>
+		<property name="degree" type="java.lang.String"></property>
+		<property name="remarks" type="java.lang.String"></property>
+		<property name="graduateDate" type="date"></property>
+		<many-to-one name="teacher" class="com.vp.model.Teacher" column="teacher_id" lazy="false" fetch="select"></many-to-one>
+	</class>
+</hibernate-mapping>

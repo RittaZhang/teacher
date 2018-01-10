@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.vp.model.Attendance" table="ATTENDANCE">
+		<id name="id" type="int">
+			<generator class="native"/>  <!-- 自增长 -->
+		</id>
+		<property name="attendanceDate" type="date"></property>
+		<property name="attendanceStatus" type="java.lang.String"></property>
+		<property name="teacher_id" type="int"></property> 
+		<property name="remarks" type="java.lang.String"></property>
+		<!-- <many-to-one name="teacher" class="com.vp.model.Teacher" column="teacher_id" lazy="false" fetch="select"></many-to-one> -->
+	</class>
+</hibernate-mapping>

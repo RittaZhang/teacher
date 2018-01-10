@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="com.vp.model.Teacher" table="TEACHER">
+		<id name="id" type="int">
+			<generator class="increment"/>  <!-- 自增长 -->
+		</id>
+		<property name="code" type="java.lang.String">
+			<column name="code" length="20" not-null="true"></column>
+		</property>
+		<property name="name" type="java.lang.String"></property>
+		<property name="gender" type="java.lang.String"></property>
+		<property name="marriage" type="java.lang.String"></property>
+		<property name="address" type="java.lang.String"></property>
+		<property name="phone" type="java.lang.String"></property>
+		<property name="teachingage" type="int"></property>
+		<property name="nativeplace" type="java.lang.String"></property>
+		<property name="nation" type="java.lang.String"></property>
+		<property name="politics" type="java.lang.String"></property>	
+        <property name="title" type="java.lang.String"></property>	
+		<property name="idcard" type="java.lang.String"></property>
+		<property name="birthday" type="date"></property>
+		<property name="status" type="java.lang.String"></property>
+		<property name="workdate" type="date"></property>
+		<property name="quitdate" type="date"></property>
+		<property name="whereabouts" type="java.lang.String"></property>
+		<property name="quitreason" type="java.lang.String"></property>
+		<property name="retiredate" type="date"></property>
+		<property name="rank" type="java.lang.String"></property>
+		<property name="rankDate" type="date"></property>
+		<property name="titleDate" type="date"></property>
+		<!-- 配置多对一关联关系 -->
+		<many-to-one name="department" class="com.vp.model.Department" column="department_Id" lazy="false" fetch="select"></many-to-one>
+		
+		<set name="educations" table="Education" lazy="false" fetch="select" order-by="graduateDate desc">
+			<key column="teacher_id"></key>
+			<one-to-many class="com.vp.model.Education" />
+		</set>
+		<set name="attendances" table="Attendance" lazy="false" fetch="select" order-by="attendanceDate desc">
+			<key column="teacher_id"></key>
+			<one-to-many class="com.vp.model.Attendance" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	
+	<package name="default" namespace="/" extends="struts-default">
+        
+    </package>
+	<package name="manager" namespace="/manager" extends="default">
+		<action name="*_*" class="com.vp.action.{1}Action" method="{2}">
+			<result name="login_success">/manager/manager_login_success.jsp</result>
+			<result name="login_failure">/manager/manager_login.jsp</result>
+			<result name="logout_success">/manager/manager_login.jsp</result>
+		</action>
+	</package>
+	<package name="department" namespace="/department" extends="default">
+		<action name="*_*" class="com.vp.action.{1}Action" method="{2}">
+			<result name="query_success">/department/Department_query_success.jsp</result>
+			<result name="delete_success" type="chain">Department_query</result>
+			<result name="delete_failure">/department/Department_query_success.jsp</result>
+			<result name="add_success">/department/Department_add_success.jsp</result>
+			<result name="add_failure">/department/Department_add.jsp</result>
+			<result name="modify_success">/department/Department_modify.jsp</result>
+			<result name="update_success">/department/Department_modify_success.jsp</result>
+			
+		</action>
+	</package>
+	<package name="teacher" namespace="/teacher" extends="default">
+		<action name="*_*" class="com.vp.action.{1}Action" method="{2}">
+			<result name="teacher_success">/teacher/AllTeacher.jsp</result>
+			<result name="save_fail">/teacher/Teacher_add.jsp</result>
+			<result name="save_success">/teacher/Teacher_add_success.jsp</result>
+			<result name="update_success">/teacher/Teacher_update_success.jsp</result>
+			<result name="modify">/teacher/Teacher_update.jsp</result>
+			<result name="detail">/teacher/Teacher_detail.jsp</result>
+			<result name="teacherInfo_success">/teacher/TeacherInfo_list.jsp</result>
+			<result name="success" type="stream">  
+                <!-- 下载文件的类型，如果你不知道是什么格式，可以去 tomcat\conf\web.xml下找 -->  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <!-- 返回流 excelStream为action中的流变量名称 -->  
+                <param name="inputName">excelStream</param>  
+                <!-- attachment 这个位置的参数挺特殊的，可以设置成下载时，是否出现个下载提示框，或者直接下载之类的。  
+                fileName指定生成的文件名字(适合动态生成文件名，比如做报表时，一般都要说是几月的统计数据之类)为action中变量-->  
+                <param name="contentDisposition">  
+                    attachment;filename=${excelFileName}  
+                </param>  
+                <param name="bufferSize">2048</param>  
+            </result>
+		</action>
+	</package>
+	<package name="education" namespace="/education" extends="default">
+		<action name="*_*" class="com.vp.action.{1}Action" method="{2}">
+			<result name="education_search">/education/Education_search.jsp</result>
+			<result name="education_edit">/education/Education_edit.jsp</result>
+			<result name="success" type="stream">  
+                <!-- 下载文件的类型，如果你不知道是什么格式，可以去 tomcat\conf\web.xml下找 -->  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <!-- 返回流 excelStream为action中的流变量名称 -->  
+                <param name="inputName">excelStream</param>  
+                <!-- attachment 这个位置的参数挺特殊的，可以设置成下载时，是否出现个下载提示框，或者直接下载之类的。  
+                fileName指定生成的文件名字(适合动态生成文件名，比如做报表时，一般都要说是几月的统计数据之类)为action中变量-->  
+                <param name="contentDisposition">  
+                    attachment;filename=${excelFileName}  
+                </param>  
+                <param name="bufferSize">2048</param>  
+            </result> 
+		</action>
+	</package>
+	<package name="selection" namespace="/selection" extends="default">
+		<action name="*_*" class="com.vp.action.{1}Action" method="{2}">
+			<result name="education_edit">/education/Education_edit.jsp</result>
+			<result name="query_success">/selection/Selection_query.jsp</result>
+			<result name="add_failure">/selection/Selection_query.jsp</result>
+			<result name="modify_success">/selection/Selection_modify.jsp</result>
+			<result name="update_success">/selection/Selection_modify_success.jsp</result>		
+		</action>
+	</package>
+	<package name="attendance" namespace="/attendance" extends="default">
+		<action name="*_*" class="com.vp.action.{1}Action" method="{2}">
+			<result name="attendance_success">/attendance/attendance_search.jsp</result>
+			<result name="attendance_detail">/attendance/attendance_detail.jsp</result>
+			<result name="update_success">/attendance/Attendance_update_success.jsp</result>
+		</action>
+	</package>
+	<package name="export" namespace="/export" extends="default">  
+        <action name="*_*" class="com.vp.action.{1}Action" method="{2}">  
+  
+        <!--测试Excel下载
+        <action name="exportExcel" class="com.vp.action.excelExportAction" method="exportExcel">  -->  
+            <result name="success" type="stream">  
+                <!-- 下载文件的类型，如果你不知道是什么格式，可以去 tomcat\conf\web.xml下找 -->  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <!-- 返回流 excelStream为action中的流变量名称 -->  
+                <param name="inputName">excelStream</param>  
+                <!-- attachment 这个位置的参数挺特殊的，可以设置成下载时，是否出现个下载提示框，或者直接下载之类的。  
+                fileName指定生成的文件名字(适合动态生成文件名，比如做报表时，一般都要说是几月的统计数据之类)为action中变量-->  
+                <param name="contentDisposition">  
+                    attachment;filename=${excelFileName}  
+                </param>  
+                <param name="bufferSize">2048</param>  
+            </result>  
+        </action>  
+    </package>
+     <package name="upload" namespace="/upload" extends="default">
+    	
+		<action name="*_*" class="com.vp.action.{1}Action" method="{2}">
+			<result name="upload">/teacher/UploadFile.jsp</result>
+		</action>
+	</package>
+</struts>
